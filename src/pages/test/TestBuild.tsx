@@ -12,12 +12,21 @@ const wrapCompHOC = (Component: any) => {
   );
 };
 
-const Start = () => {
-  return <div>Just starting</div>;
-};
+const counterWrapper = (Component: any) => {
+  return (props: any) => {
+    const [state, setState] = useState<number>(0);
 
-const StartII = () => {
-  return <div>This class is super awesome</div>;
+    const add = () => {
+      setState((el) => el + 1);
+    };
+
+    return (
+      <div>
+        {state}
+        <Component {...props} add={add} />
+      </div>
+    );
+  };
 };
 
 const countWrapper = (Component: any) => {
@@ -34,10 +43,10 @@ const countWrapper = (Component: any) => {
   };
 };
 
-const Counter = () => {
+const Counter = (props: any) => {
   return (
     <div className="">
-      <h1>Counter</h1>
+      <h1 onClick={props.add}>Counter</h1>
     </div>
   );
 };
@@ -59,11 +68,12 @@ const CounterII = () => {
 };
 
 const DsplayCount = countWrapper(Counter);
+const DisplayCounter = counterWrapper(Counter);
 const TestBuild = () => {
   return (
     <div>
       <div>Viewing HOC</div>
-      <DsplayCount />
+      <DisplayCounter />
     </div>
   );
 };

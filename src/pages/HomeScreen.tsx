@@ -8,9 +8,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import MyButton from "./reUser/buttonUsed/MyButton";
 import ButtonBuild from "./build/ButtonBuild";
 import FormInput from "./build/FormInput";
+import MagixInput from "./build/MagixInput";
 
 const HomeScreen = () => {
   const [state, setState]: any = useState();
+  const [data, setData]: any = useState<string>("");
 
   const yupSchema = yup.object({
     email: yup.string(),
@@ -115,12 +117,25 @@ const HomeScreen = () => {
           </div>
           <br />
           <br />
-
           <hr />
           <br />
           <div>hh</div>
-
-          <FormInput>start</FormInput>
+          <FormInput>start</FormInput> <br />
+          <br />
+          <hr />
+          <br />
+          <MagixInput
+            valueData={data}
+            onChange={(e: any) => {
+              setData(e.target.value);
+            }}
+            // className="border-blue-400 "
+            basedColor2="border-blue-400"
+            basedColor="border-red-600"
+          >
+            Let's do this
+          </MagixInput>{" "}
+          <div>data: {data}</div>
         </div>
       </div>
     </div>

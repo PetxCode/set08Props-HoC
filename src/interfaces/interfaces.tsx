@@ -1,3 +1,7 @@
+import { VariantProps } from "class-variance-authority";
+import { ButtonHTMLAttributes, ReactNode } from "react";
+import { buttonVariable } from "./authority";
+
 export interface iIcon {
   icon: React.ReactNode;
   bg?: string;
@@ -15,4 +19,10 @@ export interface iSideNav {
 
 export interface iNav {
   text: string;
+}
+
+export interface iProps
+  extends ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariable> {
+  children: ReactNode;
 }
